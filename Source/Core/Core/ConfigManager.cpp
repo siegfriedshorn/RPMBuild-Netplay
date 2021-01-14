@@ -292,6 +292,7 @@ void SConfig::SaveCoreSettings(IniFile& ini)
   core->Set("EnableSignatureChecks", m_enable_signature_checks);
   core->Set("QoSEnabled", bQoSEnabled);
   core->Set("AdapterWarning", bAdapterWarning);
+  core->Set("WiiNetplaySaveReplays", bSaveNetplayReplays);
 }
 
 void SConfig::SaveMovieSettings(IniFile& ini)
@@ -604,6 +605,7 @@ void SConfig::LoadCoreSettings(IniFile& ini)
   core->Get("EnableSignatureChecks", &m_enable_signature_checks, true);
   core->Get("QoSEnabled", &bQoSEnabled, true);
   core->Get("AdapterWarning", &bAdapterWarning, true);
+  core->Get("WiiNetplaySaveReplays", &bSaveNetplayReplays, true);
 }
 
 void SConfig::LoadMovieSettings(IniFile& ini)
@@ -826,6 +828,7 @@ void SConfig::LoadDefaults()
   m_strWiiSDCardPath = File::GetUserPath(F_WIISDCARD_IDX);
   bEnableMemcardSdWriting = true;
   bAllowSdWriting = false;
+  bSaveNetplayReplays = true;
   SelectedLanguage = 0;
   bOverrideGCLanguage = false;
   bWii = false;
