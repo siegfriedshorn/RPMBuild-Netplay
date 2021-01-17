@@ -330,7 +330,6 @@ void SConfig::SaveInputSettings(IniFile& ini)
   IniFile::Section* input = ini.GetOrCreateSection("Input");
 
   input->Set("BackgroundInput", m_BackgroundInput);
-  input->Set("WriteInputsToFile", m_WriteInputsToFile);
 }
 
 void SConfig::SaveFifoPlayerSettings(IniFile& ini)
@@ -644,7 +643,6 @@ void SConfig::LoadInputSettings(IniFile& ini)
   IniFile::Section* input = ini.GetOrCreateSection("Input");
 
   input->Get("BackgroundInput", &m_BackgroundInput, false);
-  input->Get("WriteInputsToFile", &m_WriteInputsToFile, false);
 }
 
 void SConfig::LoadFifoPlayerSettings(IniFile& ini)
