@@ -35,6 +35,7 @@ class TMDReader;
 #define BACKEND_NULLSOUND _trans("No Audio Output")
 #define BACKEND_ALSA "ALSA"
 #define BACKEND_CUBEB "Cubeb"
+#define BACKEND_WASAPI "WASAPI (Exclusive Mode)"
 #define BACKEND_OPENAL "OpenAL"
 #define BACKEND_PULSEAUDIO "Pulse"
 #define BACKEND_XAUDIO2 "XAudio2"
@@ -114,6 +115,7 @@ struct SConfig
   bool bEnableMemcardSdWriting = true;
   bool bAllowSdWriting = false;
   bool bCopyWiiSaveNetplay = true;
+  bool bSaveNetplayReplays = true;
 
   bool bDPL2Decoder = false;
   int iLatency = 20;
@@ -318,9 +320,13 @@ struct SConfig
   int m_Volume;
   std::string sBackend;
 
+#ifdef _WIN32
+  // WSAPI settings
+  std::string sWASAPIDevice;
+#endif
+
   // Input settings
   bool m_BackgroundInput;
-  bool m_WriteInputsToFile;
   bool m_AdapterRumble[4];
   bool m_AdapterKonga[4];
 

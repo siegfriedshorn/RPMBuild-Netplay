@@ -252,7 +252,6 @@ void SConfig::SaveCoreSettings(IniFile& ini)
   core->Set("AccurateNaNs", bAccurateNaNs);
   core->Set("DefaultISO", m_strDefaultISO);
   core->Set("EnableCheats", bEnableCheats);
-  core->Set("WiiSDCardWritable", bEnableMemcardSdWriting);
   core->Set("SDWritable", bAllowSdWriting);
   core->Set("SelectedLanguage", SelectedLanguage);
   core->Set("OverrideGCLang", bOverrideGCLanguage);
@@ -293,6 +292,7 @@ void SConfig::SaveCoreSettings(IniFile& ini)
   core->Set("EnableSignatureChecks", m_enable_signature_checks);
   core->Set("QoSEnabled", bQoSEnabled);
   core->Set("AdapterWarning", bAdapterWarning);
+  core->Set("WiiNetplaySaveReplays", bSaveNetplayReplays);
 }
 
 void SConfig::SaveMovieSettings(IniFile& ini)
@@ -318,6 +318,11 @@ void SConfig::SaveDSPSettings(IniFile& ini)
   dsp->Set("Backend", sBackend);
   dsp->Set("Volume", m_Volume);
   dsp->Set("CaptureLog", m_DSPCaptureLog);
+
+#ifdef _WIN32
+  dsp->Set("WASAPIDevice", sWASAPIDevice);
+#endif
+
 }
 
 void SConfig::SaveInputSettings(IniFile& ini)
@@ -325,7 +330,6 @@ void SConfig::SaveInputSettings(IniFile& ini)
   IniFile::Section* input = ini.GetOrCreateSection("Input");
 
   input->Set("BackgroundInput", m_BackgroundInput);
-  input->Set("WriteInputsToFile", m_WriteInputsToFile);
 }
 
 void SConfig::SaveFifoPlayerSettings(IniFile& ini)
@@ -547,7 +551,6 @@ void SConfig::LoadCoreSettings(IniFile& ini)
   core->Get("SyncOnSkipIdle", &bSyncGPUOnSkipIdleHack, true);
   core->Get("DefaultISO", &m_strDefaultISO);
   core->Get("EnableCheats", &bEnableCheats, false);
-  core->Get("WiiSDCardWritable", &bEnableMemcardSdWriting, true);
   core->Get("SDWritable", &bAllowSdWriting, false);
   core->Get("SelectedLanguage", &SelectedLanguage, 0);
   core->Get("OverrideGCLang", &bOverrideGCLanguage, false);
@@ -601,6 +604,7 @@ void SConfig::LoadCoreSettings(IniFile& ini)
   core->Get("EnableSignatureChecks", &m_enable_signature_checks, true);
   core->Get("QoSEnabled", &bQoSEnabled, true);
   core->Get("AdapterWarning", &bAdapterWarning, true);
+  core->Get("WiiNetplaySaveReplays", &bSaveNetplayReplays, true);
 }
 
 void SConfig::LoadMovieSettings(IniFile& ini)
@@ -627,6 +631,10 @@ void SConfig::LoadDSPSettings(IniFile& ini)
   dsp->Get("Volume", &m_Volume, 100);
   dsp->Get("CaptureLog", &m_DSPCaptureLog, false);
 
+#ifdef _WIN32
+  dsp->Get("WASAPIDevice", &sWASAPIDevice, "default");
+#endif
+
   m_IsMuted = false;
 }
 
@@ -635,7 +643,6 @@ void SConfig::LoadInputSettings(IniFile& ini)
   IniFile::Section* input = ini.GetOrCreateSection("Input");
 
   input->Get("BackgroundInput", &m_BackgroundInput, false);
-  input->Get("WriteInputsToFile", &m_WriteInputsToFile, false);
 }
 
 void SConfig::LoadFifoPlayerSettings(IniFile& ini)
@@ -819,6 +826,7 @@ void SConfig::LoadDefaults()
   m_strWiiSDCardPath = File::GetUserPath(F_WIISDCARD_IDX);
   bEnableMemcardSdWriting = true;
   bAllowSdWriting = false;
+  bSaveNetplayReplays = true;
   SelectedLanguage = 0;
   bOverrideGCLanguage = false;
   bWii = false;
