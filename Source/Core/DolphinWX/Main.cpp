@@ -598,7 +598,7 @@ void DolphinApp::UpdateApp()
   RunSystemCommand(command);
 #elif defined(__APPLE__)
   chdir(File::GetBundleDirectory().c_str());
-  std::string command = "./Contents/Resources/Updater";
+  std::string command = "open -a /Applications/Utilities/Terminal.app Contents/Resources/Updater";
   RunSystemCommand(command);
 #endif
 }
