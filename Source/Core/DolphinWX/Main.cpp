@@ -107,6 +107,7 @@ CFrame* main_frame = nullptr;
 
 #if defined(_WIN32) || defined(__APPLE__)
 bool DolphinApp::updateAvailable = false;
+std::string updateLink;
 #endif
 
 bool DolphinApp::Initialize(int& c, wxChar** v)
@@ -563,6 +564,7 @@ void DolphinApp::CheckUpdate()
     INFO_LOG(COMMON, "Update status: we are not up to date.");
     updateAvailable = true;
     std::string changelog = obj["changelog"].get<std::string>();
+    updateLink = obj["download-page-windows"].get<std::string>();
     int answer = wxMessageBox(_(
       "An update is available. Would you like to update? Changelog:\n\n" + changelog +
       "\n\nWANRING! IF YOU HAVE ANY CUSTOM CONTENT THIS MAY REPLACE IT!"
@@ -591,9 +593,8 @@ void DolphinApp::CheckUpdate()
 void DolphinApp::UpdateApp()
 {
 #ifdef _WIN32
-  std::string path = File::GetExeDirectory() + "/Updater-temp.exe";
-  std::string command = "start " + path + "\"";
-  WARN_LOG(COMMON, "Executing app update command: %s", command);
+  std::string path = "\"" + File::GetExeDirectory() + "\"";
+  std::string command = "start /d " + path + " Updater-temp.exe " + "\"" + updateLink + "\" " + path;
   RunSystemCommand(command);
 #elif defined(__APPLE__)
   chdir(File::GetBundleDirectory().c_str());
