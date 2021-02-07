@@ -183,6 +183,7 @@ jobs:
         if: success()
         working-directory: ${{ github.workspace }}
         run: |
+          chmod +x ./build-linux.sh
           ./build-linux.sh
       - name: "Build AppImage"
         if: success()
