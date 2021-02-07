@@ -455,10 +455,10 @@ void SConfig::LoadInterfaceSettings(IniFile& ini)
 {
   IniFile::Section* interface = ini.GetOrCreateSection("Interface");
 
-  interface->Get("ConfirmStop", &bConfirmStop, true);
-  interface->Get("UsePanicHandlers", &bUsePanicHandlers, true);
+  interface->Get("ConfirmStop", &bConfirmStop, false);
+  interface->Get("UsePanicHandlers", &bUsePanicHandlers, false);
   interface->Get("OnScreenDisplayMessages", &bOnScreenDisplayMessages, true);
-  interface->Get("HideCursor", &bHideCursor, false);
+  interface->Get("HideCursor", &bHideCursor, true);
   interface->Get("MainWindowPosX", &iPosX, INT_MIN);
   interface->Get("MainWindowPosY", &iPosY, INT_MIN);
   interface->Get("MainWindowWidth", &iWidth, -1);
@@ -550,8 +550,8 @@ void SConfig::LoadCoreSettings(IniFile& ini)
   core->Get("CPUThread", &bCPUThread, true);
   core->Get("SyncOnSkipIdle", &bSyncGPUOnSkipIdleHack, true);
   core->Get("DefaultISO", &m_strDefaultISO);
-  core->Get("EnableCheats", &bEnableCheats, false);
-  core->Get("SDWritable", &bAllowSdWriting, false);
+  core->Get("EnableCheats", &bEnableCheats, true);
+  core->Get("SDWritable", &bAllowSdWriting, true);
   core->Get("SelectedLanguage", &SelectedLanguage, 0);
   core->Get("OverrideGCLang", &bOverrideGCLanguage, false);
   core->Get("DPL2Decoder", &bDPL2Decoder, false);
@@ -570,11 +570,11 @@ void SConfig::LoadCoreSettings(IniFile& ini)
   for (int i = 0; i < SerialInterface::MAX_SI_CHANNELS; ++i)
   {
     core->Get(StringFromFormat("SIDevice%i", i), (u32*)&m_SIDevice[i],
-      (i == 0) ? SerialInterface::SIDEVICE_GC_CONTROLLER : SerialInterface::SIDEVICE_NONE);
+      (i == 0) ? SerialInterface::SIDEVICE_WIIU_ADAPTER : SerialInterface::SIDEVICE_NONE);
     core->Get(StringFromFormat("AdapterRumble%i", i), &m_AdapterRumble[i], true);
     core->Get(StringFromFormat("SimulateKonga%i", i), &m_AdapterKonga[i], false);
   }
-  core->Get("WiiSDCard", &m_WiiSDCard, false);
+  core->Get("WiiSDCard", &m_WiiSDCard, true);
   core->Get("WiiKeyboard", &m_WiiKeyboard, false);
   core->Get("WiimoteContinuousScanning", &m_WiimoteContinuousScanning, false);
   core->Get("WiimoteEnableSpeaker", &m_WiimoteEnableSpeaker, false);
@@ -825,7 +825,7 @@ void SConfig::LoadDefaults()
   bFastDiscSpeed = false;
   m_strWiiSDCardPath = File::GetUserPath(F_WIISDCARD_IDX);
   bEnableMemcardSdWriting = true;
-  bAllowSdWriting = false;
+  bAllowSdWriting = true;
   bSaveNetplayReplays = true;
   SelectedLanguage = 0;
   bOverrideGCLanguage = false;

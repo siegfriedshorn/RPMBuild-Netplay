@@ -108,12 +108,12 @@ struct SConfig
   bool bDSPHLE = true;
   bool bSyncGPUOnSkipIdleHack = true;
   bool bHLE_BS2 = true;
-  bool bEnableCheats = false;
+  bool bEnableCheats = true;
   bool bNTSC = false;
   bool bQoSEnabled = true;
   bool bAdapterWarning = true;
   bool bEnableMemcardSdWriting = true;
-  bool bAllowSdWriting = false;
+  bool bAllowSdWriting = true;
   bool bCopyWiiSaveNetplay = true;
   bool bSaveNetplayReplays = true;
 
@@ -149,8 +149,8 @@ struct SConfig
 
   // Interface settings
   bool bConfirmStop = false;
-  bool bHideCursor = false;
-  bool bUsePanicHandlers = true;
+  bool bHideCursor = true;
+  bool bUsePanicHandlers = false;
   bool bOnScreenDisplayMessages = true;
   std::string theme_name;
 
