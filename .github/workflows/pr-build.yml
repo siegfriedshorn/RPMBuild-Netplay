@@ -196,8 +196,6 @@ jobs:
           chmod +x ./*.AppImage
           zip -r "${FILE_NAME}" ./*.AppImage*
           mv "${FILE_NAME}" ./artifact/
-          mv "Faster_Project_Plus-x86-64.AppImage" ./artifact/
-          mv "Faster_Project_Plus-x86-64.AppImage.zsync" ./artifact/
       - name: "Publish"
         if: success()
         uses: actions/upload-artifact@v2-preview
