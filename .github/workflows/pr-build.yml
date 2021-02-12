@@ -193,6 +193,7 @@ jobs:
         run: |
           mkdir artifact
           FILE_NAME=${{ env.CURR_DATE }}-${{ env.GIT_HASH }}-${{ env.GIT_TAG }}-linux.zip
+          chmod +x ./*.AppImage
           zip -r "${FILE_NAME}" ./*.AppImage*
           mv "${FILE_NAME}" ./artifact/
           mv "Faster_Project_Plus-x86-64.AppImage" ./artifact/
