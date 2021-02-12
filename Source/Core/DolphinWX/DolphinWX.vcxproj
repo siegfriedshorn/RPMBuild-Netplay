@@ -284,9 +284,6 @@
     <ProjectReference Include="..\VideoCommon\VideoCommon.vcxproj">
       <Project>{3e5c4e02-1ba9-4776-bdbe-e3f91ffa34cf}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Updater\Updater.vcxproj">
-      <Project>{e4becbab-9c6e-41ab-bb56-f9d70ab6be03}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
@@ -294,7 +291,7 @@
   <!--Copy Exe, Data directory and DLLs which should be located in the executable directory-->
   <ItemGroup>
     <DataSysFiles Include="$(DolphinRootDir)Data\**\Sys\**\*.*" />
-	<DataUserFiles Include="$(DolphinRootDir)Data\**\User\**\*.*" />
+    <DataUserFiles Include="$(DolphinRootDir)Data\**\User\**\*.*" />
     <DataTxtFiles Include="$(DolphinRootDir)Data\license.txt;$(DolphinRootDir)Data\portable.txt" />
     <BinaryFiles Include="$(TargetPath)" />
     <AllInputFiles Include="@(DataSysFiles);@(DataUserFiles);@(DataTxtFiles);@(BinaryFiles)" />
