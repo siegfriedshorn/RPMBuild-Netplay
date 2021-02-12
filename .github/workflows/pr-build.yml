@@ -266,7 +266,7 @@ jobs:
         shell: bash
         run: |
           git clone https://github.com/jlambert360/FPM-Mac-Updater
-          cd FPM-Updater
+          cd FPM-Mac-Updater
           cargo build --all --release && strip target/release/Updater
           cd "target/release/"
           mv "Updater" ${{ github.workspace }}/build/Binaries/Dolphin.app/Contents/Resources/
