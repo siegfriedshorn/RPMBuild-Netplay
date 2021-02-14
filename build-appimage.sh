@@ -1,7 +1,7 @@
 #!/bin/bash -e
 # build-online-appimage.sh
 
-ZSYNC_STRING="gh-releases-zsync|jlambert360|FPM-AppImage|latest|Faster_Project_Plus-x86_64.AppImage.zsync"
+ZSYNC_STRING="gh-releases-zsync|jlambert360|FPM-AppImage|latest|Faster_Project_Plus-x86-64.AppImage.zsync"
 APPIMAGE_STRING="Faster_Project_Plus-x86_64.AppImage"
 
 LINUXDEPLOY_PATH="https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous"
