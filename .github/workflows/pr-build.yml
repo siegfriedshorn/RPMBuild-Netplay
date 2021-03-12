@@ -6,12 +6,10 @@ on:
         - "**"
     paths-ignore:
         - "**.md"
-        - "**.ini"
   pull_request:
     branches: [ Dev ]
     paths-ignore:
       - "**.md"
-      - "**.ini"
 
 jobs:
   windows:
@@ -24,29 +22,35 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v2.3.1
+
       - name: "Remove Redistributable"
         shell: cmd
         run: |
           MsiExec.exe /passive /X{F0C3E5D1-1ADE-321E-8167-68EF0DE699A5}
           MsiExec.exe /passive /X{1D8E6291-B0D5-35EC-8441-6616F567A0F7}
           mkdir .\Tools\DX
+
       - name: "Setup MSBuild"
         uses: microsoft/setup-msbuild@v1
+
       - name: "Cache DXSDK_Jun10.exe"
         uses: actions/cache@v2
         with:
           path: ./Tools/DX/
           key: ${{ runner.os }}
+
       - name: "Download DirectX SDK"
         working-directory: ${{ github.workspace }}
         shell: powershell
         run: |
           if (!(Test-Path ".\Tools\DX\DXSDK_Jun10.exe" -PathType Leaf)) { Invoke-WebRequest -Uri https://github.com/project-slippi/Ishiiruka/releases/download/v2.2.5/DXSDK_Jun10.exe -UseBasicParsing -OutFile ".\Tools\DX\DXSDK_Jun10.exe" }
+
       - name: "Install DirectX SDK"
         working-directory: ${{ github.workspace }}
         shell: cmd
         run: |
           .\Tools\DX\DXSDK_Jun10.exe /U /F
+
       - name: 'Fetch Git Tags'
         shell: bash
         if: success()
@@ -56,14 +60,17 @@ jobs:
           echo "GIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           echo "GIT_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
           echo "CURR_DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
       - name: "Build Dolphin"
         shell: cmd
         run: |
           msbuild /p:Configuration=Release /p:Platform=x64 ${{ github.workspace }}\Source\Dolphin.sln
+
       - name: "Setup Nuget.exe"
         uses: nuget/setup-nuget@v1
         with:
           nuget-version: '5.x'
+
       - name: "Build Updater"
         working-directory: ${{ github.workspace }}
         shell: cmd
@@ -74,6 +81,7 @@ jobs:
           msbuild /p:Configuration=Release /p:Platform="Any CPU" ${{ github.workspace }}\FPM-Win-Updater\DolphinUpdater.sln
           cd DolphinUpdater\bin\Release
           copy /b /v /y Updater.exe ${{ github.workspace }}\Binary\x64\
+
       - name: "Build Replay Manager"
         working-directory: ${{ github.workspace }}
         shell: cmd
@@ -83,6 +91,7 @@ jobs:
           msbuild /p:Configuration=Release /p:Platform="Any CPU" "${{ github.workspace }}\Dolphin-Replay-Manager\Bird's Replay Manager.sln"
           cd "Bird's Replay Manager\bin\Release"
           copy /b /v /y "Bird's Replay Manager.exe" ${{ github.workspace }}\Binary\x64\
+
       - name: "Prepare Artifact"
         working-directory: ${{ github.workspace }}
         run: |
@@ -101,6 +110,7 @@ jobs:
           mkdir Games
           cd Games
           fsutil file createnew "Place Brawl ISO here.txt" 0
+
       - name: "Package Artifact"
         working-directory: ${{ github.workspace }}
         run: |
@@ -109,6 +119,7 @@ jobs:
           cd .\Binary\x64\
           7z a $FILE_NAME .\*
           move $FILE_NAME ..\..\artifact\
+
       - name: "Publish"
         if: success()
         uses: actions/upload-artifact@v2-preview
@@ -125,6 +136,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - name: 'Fetch Git Tags'
         if: success()
         run: |
@@ -133,6 +145,7 @@ jobs:
           echo "GIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           echo "GIT_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
           echo "CURR_DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
       - name: "Install prerequisites"
         if: success()
         shell: bash
@@ -175,18 +188,21 @@ jobs:
           qtbase5-private-dev \
           libxxf86vm-dev \
           x11proto-xinerama-dev
+
       - name: "Build Dolphin"
         if: success()
         working-directory: ${{ github.workspace }}
         run: |
           chmod +x ./build-linux.sh
           ./build-linux.sh
+
       - name: "Build AppImage"
         if: success()
         working-directory: ${{ github.workspace }}
         run: |
           chmod +x ./build-appimage.sh
           ./build-appimage.sh
+
       - name: "Package"
         if: success()
         working-directory: ${{ github.workspace }}
@@ -196,6 +212,7 @@ jobs:
           chmod +x ./*.AppImage
           zip -r "${FILE_NAME}" ./*.AppImage*
           mv "${FILE_NAME}" ./artifact/
+
       - name: "Publish"
         if: success()
         uses: actions/upload-artifact@v2-preview
@@ -212,6 +229,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - name: 'Fetch Git Tags'
         if: success()
         run: |
@@ -220,6 +238,7 @@ jobs:
           echo "GIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           echo "GIT_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
           echo "CURR_DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
       - name: "Install 10.14 SDK"
         if: success()
         shell: bash
@@ -229,6 +248,7 @@ jobs:
           tar -xf MacOSX10.14.sdk.tar.xz
           rm MacOSX10.14.sdk.tar.xz
           sudo mv MacOSX10.14.sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/
+
       - name: "Download and Install prerequisites"
         if: success()
         shell: bash
@@ -244,6 +264,7 @@ jobs:
           libao \
           sound-touch \
           hidapi
+
       - name: "Build Dolphin"
         if: success()
         shell: bash
@@ -254,6 +275,7 @@ jobs:
           mkdir artifact
           FILE_NAME=${{ env.CURR_DATE }}-${{ env.GIT_HASH }}-${{ env.GIT_TAG }}-macOS
           echo "FILE_NAME=$FILE_NAME" >> $GITHUB_ENV
+
       - name: "Install Rust"
         uses: actions-rs/toolchain@v1
         with:
@@ -261,6 +283,7 @@ jobs:
           target: x86_64-apple-darwin
           default: true
           override: true
+
       - name: "Build Updater"
         working-directory: ${{ github.workspace }}
         shell: bash
@@ -270,6 +293,7 @@ jobs:
           cargo build --all --release && strip target/release/Updater
           cd "target/release/"
           mv "Updater" ${{ github.workspace }}/build/Binaries/Dolphin.app/Contents/Resources/
+
       - name: "Package"
         if: success()
         shell: bash
@@ -278,6 +302,7 @@ jobs:
           cd  ./build/Binaries
           zip -r "${{ env.FILE_NAME }}.zip" Dolphin.app
           mv "${{ env.FILE_NAME }}.zip" ../../artifact/
+
       - name: "Publish"
         if: success()
         uses: actions/upload-artifact@v2-preview
