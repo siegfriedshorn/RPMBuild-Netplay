@@ -50,3 +50,6 @@ Dolphin now has an updater included for easy auto updates!
 
 2.25
 Fix updater paths on windows and mac
+
+2.27
+Change ishiiruka path on linux to FasterPPlus

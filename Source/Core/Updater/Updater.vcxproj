@@ -81,8 +81,4 @@
   <ItemGroup>
     <Manifest Include="Updater.exe.manifest" />
   </ItemGroup>
-  <Target Name="AfterBuild" Inputs="@(SourceFiles)" Outputs="@(SourceFiles -> '$(BinaryOutputDir)%(Filename)%(Extension)')">
-    <Message Text="Copy: @(SourceFiles) -&gt; $(BinaryOutputDir)" Importance="High" />
-    <Copy SourceFiles="@(SourceFiles)" DestinationFolder="$(BinaryOutputDir)" />
-  </Target>
 </Project>
