@@ -2,7 +2,7 @@
 # build-online-appimage.sh
 
 ZSYNC_STRING="gh-releases-zsync|jlambert360|FPM-AppImage|latest|Faster_Project_Plus-x86-64.AppImage.zsync"
-APPIMAGE_STRING="Faster_Project_Plus-x86_64.AppImage"
+APPIMAGE_STRING="Faster_Project_Plus-x86-64.AppImage"
 
 LINUXDEPLOY_PATH="https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous"
 LINUXDEPLOY_FILE="linuxdeploy-x86_64.AppImage"
@@ -54,7 +54,7 @@ rm -f ${APPIMAGE_STRING}
 cp ./Tools/appimageupdatetool ./AppDir/usr/bin/
 
 # Bake an AppImage with the update metadata
-export VERSION="2.25"
+export VERSION="2.28"
 UPDATE_INFORMATION="${ZSYNC_STRING}" \
 	./Tools/linuxdeploy-update-plugin --appdir=./AppDir/
 
