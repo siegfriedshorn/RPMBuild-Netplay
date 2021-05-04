@@ -567,7 +567,7 @@ void DolphinApp::CheckUpdate()
     updateLink = obj["download-page-windows"].get<std::string>();
     int answer = wxMessageBox(_(
       "An update is available. Would you like to update? Changelog:\n\n" + changelog +
-      "\n\nWANRING! IF YOU HAVE ANY CUSTOM CONTENT THIS MAY REPLACE IT!"
+      "\n\nWARNING! IF YOU HAVE ANY CUSTOM CONTENT THIS MAY REPLACE IT!"
       "\nBack up your files if there's something you want to keep!"),
       _("Update"), wxYES_NO, main_frame);
 
