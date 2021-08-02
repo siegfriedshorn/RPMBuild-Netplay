@@ -201,7 +201,7 @@ wxNotebook* NetPlaySetupFrame::CreateNotebookGUI(wxWindow* parent)
     con_szr->AddSpacer(space5);
     con_szr->Add(spectator_info, 0, wxEXPAND | wxLEFT | wxRIGHT, space5);
     con_szr->AddSpacer(space5);
-    con_szr->Add(m_spectator_toggle, 0, wxEXPAND | wxLEFT | wxRIGHT, space5);
+    con_szr->Add(m_spectator_toggle, 0, wxALIGN_LEFT | wxLEFT | wxRIGHT, space5);
     con_szr->AddSpacer(space5);
     con_szr->Add(connect_btn, 0, wxALIGN_RIGHT | wxLEFT | wxRIGHT, space5);
     con_szr->AddSpacer(space5);
