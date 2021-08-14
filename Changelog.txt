@@ -3,7 +3,7 @@ Github source: https://github.com/Birdthulu/Ishiiruka/tree/master
 
 Thanks to Jetfantastic, Pikmon, Mangachu, Guttey, TwistyCap69, Pineapple, Woody, Scarfy, Tiffany Brockhoff, Hakeembisiolu, 
 Alan Estrada, Caravan, Jonny Celestin, Evan Coleman, Jagz$, Jaylon Bliss, Elijah Huertas, Morgan Medacier, Jeffrey Warner,
-SuperMrJMT, Fortress, and Eric for the support on Patreon!
+SuperMrJMT, Fortress, Eric, Anton, Tia, Corkxx, MeleeSadPosts, and ECHOnce for the support on Patreon!
 https://www.patreon.com/FasterPM to support the project! Join the discord here: https://discord.gg/ZHYxnFp
 
 1.0
@@ -53,3 +53,7 @@ Fix updater paths on windows and mac
 
 2.27
 Change ishiiruka path on linux to FasterPPlus
+
+2.29
+Now using a high quality P+ icon on Linux
+Spectator mode no longer has a hitbox the size of saturn
