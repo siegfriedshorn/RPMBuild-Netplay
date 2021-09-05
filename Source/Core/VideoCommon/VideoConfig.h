@@ -33,7 +33,7 @@ enum AspectMode
   ASPECT_ANALOG = 2,
   ASPECT_STRETCH = 3,
   ASPECT_4_3 = 4,
-  ASPECT_73_60 = 5,
+  ASPECT_19_15 = 5,
   ASPECT_69_40 = 6,
   ASPECT_16_9 = 7,
   ASPECT_16_10 = 8,
