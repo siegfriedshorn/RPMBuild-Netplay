@@ -18,7 +18,7 @@
   <PropertyGroup Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
   </PropertyGroup>
@@ -30,8 +30,7 @@
     <Import Project="..\..\VSProps\Base.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-    <CScript Condition="'$(ProgramFiles(x86))' != ''">%windir%\System32\cscript</CScript>
-    <CScript Condition="'$(ProgramFiles(x86))' == ''">%windir%\Sysnative\cscript</CScript>
+    <CScript>%windir%\System32\cscript</CScript>
   </PropertyGroup>
   <!--
     OutDir is always created, which is annoying for SCMRevGen as it doesn't really have an outdir.
