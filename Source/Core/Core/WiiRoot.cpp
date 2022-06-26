@@ -117,7 +117,7 @@ void ShutdownWiiRoot()
       time(&rawtime);
       timeinfo = localtime(&rawtime);
 
-      strftime(buffer, sizeof(buffer), "%d-%m-%Y %H_%M_%S", timeinfo);
+      strftime(buffer, sizeof(buffer), "%Y-%m-%d %H_%M_%S", timeinfo);
       std::string date(buffer);
 
       std::string replay_file = s_brawl_temp_save + "collect.vff" + " " + date;
