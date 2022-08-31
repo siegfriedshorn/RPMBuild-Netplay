@@ -30,7 +30,6 @@
 #include "Core/IOS/DI/DI.h"
 #include "Core/IOS/Device.h"
 #include "Core/IOS/DeviceStub.h"
-#include "Core/IOS/DolphinDevice.h"
 #include "Core/IOS/ES/ES.h"
 #include "Core/IOS/FS/FS.h"
 #include "Core/IOS/FS/FileIO.h"
@@ -372,7 +371,6 @@ void Kernel::AddCoreDevices()
   std::lock_guard<std::mutex> lock(m_device_map_mutex);
   AddDevice(std::make_unique<Device::FS>(*this, "/dev/fs"));
   AddDevice(std::make_unique<Device::ES>(*this, "/dev/es"));
-  AddDevice(std::make_unique<Device::DolphinDevice>(*this, "/dev/dolphin"));
 }
 
 void Kernel::AddStaticDevices()

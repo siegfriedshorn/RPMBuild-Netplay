@@ -29,23 +29,6 @@ SettingsHandler::SettingsHandler()
   Reset();
 }
 
-SettingsHandler::SettingsHandler(Buffer&& buffer)
-{
-  SetBytes(std::move(buffer));
-}
-
-const SettingsHandler::Buffer& SettingsHandler::GetBytes() const
-{
-  return m_buffer;
-}
-
-void SettingsHandler::SetBytes(Buffer&& buffer)
-{
-  Reset();
-  m_buffer = std::move(buffer);
-  Decrypt();
-}
-
 bool SettingsHandler::Open(const std::string& settings_file_path)
 {
   Reset();
