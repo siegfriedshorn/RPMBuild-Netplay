@@ -566,6 +566,24 @@ void GameListCtrl::UpdateItemAtColumn(long index, int column)
     {
       name = "This file is a .nkit and can't be used. Please convert to .iso";
     }
+    else if (iso_file.GetFileName().find("Project+ Offline Launcher.elf") != std::string::npos)
+    {
+      if (SConfig::GetInstance().bOfflineElfRemoved == false)
+      {
+        File::Delete(iso_file.GetFilePath());
+        SConfig::GetInstance().bOfflineElfRemoved = true;
+      }
+      name = "Please remove this file or use the .dol file instead";
+    }
+    else if (iso_file.GetFileName().find("Project+ Netplay Launcher.elf") != std::string::npos)
+    {
+      if (SConfig::GetInstance().bNetplayElfRemoved == false)
+      {
+        File::Delete(iso_file.GetFilePath());
+        SConfig::GetInstance().bNetplayElfRemoved = true;
+      }
+      name = "Please remove this file or use the .dol file instead";
+    }
 
     SetItem(index, COLUMN_TITLE, name, -1);
     break;

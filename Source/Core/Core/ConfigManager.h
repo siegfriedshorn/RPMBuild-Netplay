@@ -116,6 +116,8 @@ struct SConfig
   bool bAllowSdWriting = true;
   bool bCopyWiiSaveNetplay = true;
   bool bSaveNetplayReplays = true;
+  bool bOfflineElfRemoved = false;
+  bool bNetplayElfRemoved = false;
 
   bool bDPL2Decoder = false;
   int iLatency = 20;

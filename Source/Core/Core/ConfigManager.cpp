@@ -293,6 +293,8 @@ void SConfig::SaveCoreSettings(IniFile& ini)
   core->Set("QoSEnabled", bQoSEnabled);
   core->Set("AdapterWarning", bAdapterWarning);
   core->Set("WiiNetplaySaveReplays", bSaveNetplayReplays);
+  core->Set("OfflineElfDeleted", bOfflineElfRemoved);
+  core->Set("NetplayElfDeleted", &bNetplayElfRemoved);
 }
 
 void SConfig::SaveMovieSettings(IniFile& ini)
@@ -605,6 +607,8 @@ void SConfig::LoadCoreSettings(IniFile& ini)
   core->Get("QoSEnabled", &bQoSEnabled, true);
   core->Get("AdapterWarning", &bAdapterWarning, true);
   core->Get("WiiNetplaySaveReplays", &bSaveNetplayReplays, true);
+  core->Get("OfflineElfDeleted", &bOfflineElfRemoved, false);
+  core->Get("NetplayElfDeleted", &bNetplayElfRemoved, false);
 }
 
 void SConfig::LoadMovieSettings(IniFile& ini)
@@ -827,6 +831,8 @@ void SConfig::LoadDefaults()
   bEnableMemcardSdWriting = true;
   bAllowSdWriting = true;
   bSaveNetplayReplays = true;
+  bOfflineElfRemoved = false;
+  bNetplayElfRemoved = false;
   SelectedLanguage = 0;
   bOverrideGCLanguage = false;
   bWii = false;
