@@ -389,7 +389,8 @@ void NetPlayDialog::OnChat(wxCommandEvent&)
 
 bool NetPlayDialog::IsPMELF()
 {
-  return m_selected_game.find("elf") != std::string::npos;
+  return m_selected_game.find("elf") != std::string::npos ||
+         m_selected_game.find("dol") != std::string::npos;
 }
 
 void NetPlayDialog::GetNetSettings(NetSettings& settings)
