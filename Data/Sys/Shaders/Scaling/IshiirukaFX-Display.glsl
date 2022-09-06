@@ -4,7 +4,7 @@
 || Asmodean (DolphinFX)                                                          ||
 || Matso (MATSODOF)                                                              ||
 || Gilcher Pascal aka Marty McFly (MATSODOF original port to MCFX)               ||
-|| Daniel R?kos (Efficient Gaussian blur with linear sampling)                  ||
+|| Daniel R�kos (Efficient Gaussian blur with linear sampling)                  ||
 || mudlord (FXAA)
 || threethan (Depth Preprocessor)
 |############################        By Tino          ############################|
@@ -53,15 +53,15 @@ OptionName = A_SSAO_ENABLED
 DefaultValue = false
 ResolveAtCompilation = True
 GUIDescription = Enables Screen Space Ambient Occlusion. Creates shadow on visuals.
-GUIDescription.SPA = Habilita la Oclusi?n Ambiental.
+GUIDescription.SPA = Habilita la Oclusi�n Ambiental.
 
 [OptionBool]
 GUIName = Ambient Occlusion Only
-GUIName.SPA = Solo Oclusi?n Ambiental
+GUIName.SPA = Solo Oclusi�n Ambiental
 OptionName = A_SSAO_ONLY
 DefaultValue = False
 GUIDescription = Displays SSAO/SSGI ambient color only.
-GUIDescription.SPA = Muestra solo el componente de Oclusi?n Ambiental.
+GUIDescription.SPA = Muestra solo el componente de Oclusi�n Ambiental.
 
 [OptionRangeFloat]
 GUIName = Occlusion Multiplier
@@ -74,25 +74,25 @@ GUIDescription = Multiplier to SSAO and SSGI effects
 
 [OptionRangeFloat]
 GUIName = Occlusion Attenuation Start
-GUIName.SPA = Inicio de atenuaci?n en la oclusi?n.
+GUIName.SPA = Inicio de atenuaci�n en la oclusi�n.
 OptionName = C_AOASTART
 MinValue = 0.0
 MaxValue = 0.4
 StepAmount = 0.01
 DefaultValue = 0.4
 GUIDescription = Depth where the attenuation to the SSAO effect starts.
-GUIDescription.SPA = Profundidad a partir de la cual se comienza a atenuar la Oclusi?n Ambiental.
+GUIDescription.SPA = Profundidad a partir de la cual se comienza a atenuar la Oclusi�n Ambiental.
 
 [OptionRangeFloat]
 GUIName = Occlusion Attenuation End
-GUIName.SPA = Final de atenuaci?n en la oclusi?n.
+GUIName.SPA = Final de atenuaci�n en la oclusi�n.
 OptionName = D_AOAEND
 MinValue = 0.5
 MaxValue = 2.0
 StepAmount = 0.01
 DefaultValue = 2.0
 GUIDescription = Depth where the SSAO attenuation ends, after this value no SSAO is applied.
-GUIDescription.SPA = Profundidad a partir de la cual finaliza la aplicaci?n de la Oclusi?n Ambiental.
+GUIDescription.SPA = Profundidad a partir de la cual finaliza la aplicaci�n de la Oclusi�n Ambiental.
 
 [OptionBool]
 GUIName = SSGI
@@ -101,7 +101,7 @@ DefaultValue = false
 ResolveAtCompilation = True
 DependentOption = A_SSAO_ENABLED
 GUIDescription = Enables Screen Space Global Ilumination simulation.
-GUIDescription.SPA = Habilita la simulaci?n de Iluminaci?n global.
+GUIDescription.SPA = Habilita la simulaci�n de Iluminaci�n global.
 
 [OptionRangeInteger]
 GUIName = SSAO Quality
@@ -114,7 +114,7 @@ DefaultValue = 24
 DependentOption = A_SSAO_ENABLED
 ResolveAtCompilation = True
 GUIDescription = Number of samples used to calculate SSAO component, large values gives more quality but may cause performance drops.
-GUIDescription.SPA = Cantidad de muestras utilizadas para el calculo del componente de oclusi?n, valores muly altos producen una mejor calidad pero pueden acarrear una perdida de performance.
+GUIDescription.SPA = Cantidad de muestras utilizadas para el calculo del componente de oclusi�n, valores muly altos producen una mejor calidad pero pueden acarrear una perdida de performance.
 
 [OptionRangeFloat]
 GUIName = Sample Range
@@ -138,7 +138,7 @@ StepAmount = 0.0001
 DefaultValue = 0.0026
 DependentOption = A_SSAO_ENABLED
 GUIDescription = Amount of filtering applyed to the AO component.
-GUIDescription.SPA = Intensidad de filtrado aplicada al Componente de Oclusi?n.
+GUIDescription.SPA = Intensidad de filtrado aplicada al Componente de Oclusi�n.
 
 [OptionRangeFloat]
 GUIName = Max Depth

@@ -62,6 +62,8 @@ NetPlayServer* NetPlayDialog::netplay_server = nullptr;
 NetPlayClient* NetPlayDialog::netplay_client = nullptr;
 NetPlayDialog* NetPlayDialog::npd = nullptr;
 
+bool copyCode;
+
 void NetPlayDialog::FillWithGameNames(wxListBox* game_lbox, const GameListCtrl& game_list)
 {
   for (u32 i = 0; auto game = game_list.GetISO(i); ++i)
@@ -214,16 +216,9 @@ wxSizer* NetPlayDialog::CreatePlayerListGUI(wxWindow* parent)
     m_host_copy_btn->Bind(wxEVT_BUTTON, &NetPlayDialog::OnCopyIP, this);
     m_host_copy_btn->Disable();
 
-    UpdateHostLabel();
+    copyCode = false;
 
-    if (TraversalClient::Connected && m_host_label->GetLabelText() != "...")
-    {
-      if (wxTheClipboard->Open())
-      {
-        wxTheClipboard->SetData(new wxTextDataObject(m_host_label->GetLabel()));
-        wxTheClipboard->Close();
-      }
-    }
+    UpdateHostLabel();
 
     wxBoxSizer* const host_szr = new wxBoxSizer(wxHORIZONTAL);
     host_szr->Add(m_host_type_choice);
@@ -933,6 +928,16 @@ void NetPlayDialog::UpdateHostLabel()
       m_host_copy_btn->SetLabel(_("Copy"));
       m_host_copy_btn->Enable();
       m_host_copy_btn_is_retry = false;
+
+      if (copyCode == false)
+      {
+        if (wxTheClipboard->Open())
+        {
+          wxTheClipboard->SetData(new wxTextDataObject(m_host_label->GetLabel()));
+          wxTheClipboard->Close();
+          copyCode = true;
+        }
+      }
       break;
     case TraversalClient::Failure:
       m_host_label->SetForegroundColour(*wxBLACK);

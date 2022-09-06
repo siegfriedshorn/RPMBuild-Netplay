@@ -18,7 +18,7 @@ jobs:
     env:
       DXSDK_DIR: "C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\"
     name: "Windows Dolphin"
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: "Checkout"
         uses: actions/checkout@v2.3.1
@@ -84,16 +84,13 @@ jobs:
         run: |
           xcopy /E /V /Y /I .\Data\User .\Binary\x64\User
           xcopy /E /V /Y /I .\Data\Sys .\Binary\x64\Sys
+          xcopy /E /V /Y /I .\Data\Launcher .\Binary\x64\Launcher
           copy Changelog.txt .\Binary\x64\
           cd .\Binary\x64\
-          mkdir Launcher
           rm -r Languages
           fsutil file createnew FIX-VCRUNTIME140-ERROR.txt 0
-          echo "Download and install this: https://aka.ms/vs/16/release/vc_redist.x64.exe" > .\FIX-VCRUNTIME140-ERROR.txt
+          echo "Download and install these: https://aka.ms/vs/16/release/vc_redist.x64.exe and https://aka.ms/vs/16/release/vc_redist.x86.exe" > .\FIX-VCRUNTIME140-ERROR.txt
           Invoke-WebRequest -Uri https://github.com/jlambert360/PPlusLauncher/releases/download/2.2/vcruntime140_1.dll -UseBasicParsing -OutFile "vcruntime140_1.dll"
-          Invoke-WebRequest -Uri https://github.com/jlambert360/PPlusLauncher/releases/download/2.2/Project+.Offline.Launcher.elf -UseBasicParsing -OutFile ".\Launcher\Project+ Offline Launcher.elf"
-          Invoke-WebRequest -Uri https://github.com/jlambert360/PPlusLauncher/releases/download/2.2/Project+.Netplay.Launcher.elf -UseBasicParsing -OutFile ".\Launcher\Project+ Netplay Launcher.elf"
-          Invoke-WebRequest -Uri https://github.com/jlambert360/PPlusLauncher/releases/download/2.2/icon.png -UseBasicParsing -OutFile ".\Launcher\icon.png"
           mkdir Games
           cd Games
           fsutil file createnew "Place Brawl ISO here.txt" 0
@@ -210,7 +207,7 @@ jobs:
     strategy:
       fail-fast: false
     name: "macOS Dolphin"
-    runs-on: macos-10.15
+    runs-on: macos-11
     steps:
       - name: "Checkout"
         uses: actions/checkout@v2
@@ -244,13 +241,13 @@ jobs:
           echo "HOMEBREW_NO_AUTO_UPDATE=1" >> $GITHUB_ENV
           brew upgrade cmake
           brew install \
-          ffmpeg \
+          ffmpeg@2.8 \
           libpng \
-          libav \
           pkgconfig \
           libao \
           sound-touch \
-          hidapi
+          hidapi \
+          python@3.10
 
       - name: "Build Dolphin"
         if: success()

@@ -891,9 +891,6 @@
     <ClCompile Include="Config\UISettings.cpp">
       <Filter>Config</Filter>
     </ClCompile>
-    <ClCompile Include="IOS\DolphinDevice.cpp">
-      <Filter>IOS</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BootManager.h" />
@@ -1564,9 +1561,6 @@
     </ClInclude>
     <ClInclude Include="DSP\Jit\x64\DSPJitRegCache.h">
       <Filter>DSPCore\Jit</Filter>
-    </ClInclude>
-    <ClInclude Include="IOS\DolphinDevice.h">
-      <Filter>IOS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

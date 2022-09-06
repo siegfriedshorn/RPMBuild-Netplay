@@ -153,7 +153,6 @@ add_library(core
   HW/WiiSaveCrypted.cpp
   IOS/Device.cpp
   IOS/DeviceStub.cpp
-  IOS/DolphinDevice.cpp
   IOS/IOS.cpp
   IOS/IOSC.cpp
   IOS/MIOS.cpp

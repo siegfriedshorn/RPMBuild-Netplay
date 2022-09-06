@@ -466,8 +466,11 @@ void Renderer::DrawDebugText()
     case ASPECT_ANALOG_WIDE:
       ar_text = "Force 16:9";
       break;
-    case ASPECT_73_60:
-      ar_text = "Force 73:60 (Melee)";
+    case ASPECT_19_15:
+      ar_text = "Force 19:15 (PM)";
+      break;
+    case ASPECT_69_40:
+      ar_text = "Force 69:40 (PM Widescreen)";
       break;
     }
 
@@ -577,9 +580,9 @@ float Renderer::CalculateDrawAspectRatio(u32 target_width, u32 target_height) co
   {
     Ratio /= (4.0f / 3.0f);
   }
-  else if (g_ActiveConfig.iAspectRatio == ASPECT_73_60)
+  else if (g_ActiveConfig.iAspectRatio == ASPECT_19_15)
   {
-    Ratio /= (73.0f / 60.0f);
+    Ratio /= (19.0f / 15.0f);
   }
   else if (g_ActiveConfig.iAspectRatio == ASPECT_69_40)
   {

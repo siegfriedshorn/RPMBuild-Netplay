@@ -33,7 +33,7 @@ enum AspectMode
   ASPECT_ANALOG = 2,
   ASPECT_STRETCH = 3,
   ASPECT_4_3 = 4,
-  ASPECT_73_60 = 5,
+  ASPECT_19_15 = 5,
   ASPECT_69_40 = 6,
   ASPECT_16_9 = 7,
   ASPECT_16_10 = 8,
@@ -154,6 +154,11 @@ struct VideoConfig final
   int iMaxAnisotropy;
   bool bPostProcessingEnable;
   int iPostProcessingTrigger;
+  bool bPostProcessingEfbMustBePerspective;
+  bool bPostProcessingEfbMustBeAspect;
+  bool bPostProcessingEfbFailsafe;
+  int iPostProcessingEfbMinResolutionPercent;
+  int iPostProcessingEfbIndex;
   std::string sPostProcessingShaders;
   std::string sScalingShader;
   std::string sStereoShader;
@@ -218,6 +223,8 @@ struct VideoConfig final
   bool bEFBEmulateFormatChanges;
   bool bSkipEFBCopyToRam;
   bool bCopyEFBScaled;
+  int iEFBScaledExcludeMin;
+  int iEFBScaledExcludeMax;
   int iSafeTextureCache_ColorSamples;
   ProjectionHackConfig phack;
   float fAspectRatioHackW, fAspectRatioHackH;
