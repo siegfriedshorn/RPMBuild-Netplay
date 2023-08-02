@@ -4,7 +4,6 @@
     <ProjectGuid>{349EE8F9-7D25-4909-AAF5-FF3FADE72187}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <Import Project="$(VSPropsDir)Configuration.StaticLibrary.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="PropertySheets">
