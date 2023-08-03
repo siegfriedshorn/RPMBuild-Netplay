@@ -42,7 +42,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <!-- Ensure libusb sees it's own config.h first... -->
-      <AdditionalIncludeDirectories>.\msvc;.\libusb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\msvc;.\libusb;.\libusb\libusb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</TreatWarningAsError>
     </ClCompile>
   </ItemDefinitionGroup>
