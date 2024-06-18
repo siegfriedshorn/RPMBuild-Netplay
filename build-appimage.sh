@@ -61,7 +61,7 @@ rm ./AppDir/usr/lib/libglib*
 rm ./AppDir/usr/lib/libgobject*
 
 # Bake an AppImage with the update metadata
-export VERSION="2.5.2"
+export VERSION="3.0"
 UPDATE_INFORMATION="${ZSYNC_STRING}" \
 	./Tools/linuxdeploy-update-plugin --appdir=./AppDir/
 
