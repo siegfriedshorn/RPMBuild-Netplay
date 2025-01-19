@@ -148,7 +148,7 @@ namespace Discord
           "GMB",  // GMBE8P: Super Monkey Ball
           "GM2",  // GM2E8P: Super Monkey Ball 2
           "R8P",  // R8PE01: Super Paper Mario
-          "RSB",  // RSBE01: Super Smash Bros. Brawl
+          "RSB",  // RSBE01: Project+ - RPMBuild
           "GAL",  // GALE01: Super Smash Bros. Melee
           "PZL",  // PZLE01: The Legend of Zelda: Collector's Edition
           "G4S",  // G4SE01: The Legend of Zelda: Four Swords Adventures
@@ -245,8 +245,8 @@ namespace Discord
       discord_presence.details = "Not in-game";
     else if (SConfig::GetInstance().GetGameID() == "RSBE01")
     {
-      discord_presence.details = "Super Smash Bros. Brawl";
-      discord_presence.largeImageText = "Super Smash Bros. Brawl";
+      discord_presence.details = "Project+ - RPMBuild";
+      discord_presence.largeImageText = "Project+ - RPMBuild";
     }
     else
       discord_presence.details = title.c_str();
