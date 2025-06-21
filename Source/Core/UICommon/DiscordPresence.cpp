@@ -245,8 +245,8 @@ namespace Discord
       discord_presence.details = "Not in-game";
     else if (SConfig::GetInstance().GetGameID() == "RSBE01")
     {
-      discord_presence.details = "Project+ - RPMBuild";
-      discord_presence.largeImageText = "Project+ - RPMBuild";
+      discord_presence.details = "Project+ - RevyBuild";
+      discord_presence.largeImageText = "Project+ - RevyBuild";
     }
     else
       discord_presence.details = title.c_str();
