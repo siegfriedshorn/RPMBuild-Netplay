@@ -8,7 +8,7 @@
 
 namespace Common
 {
-#define VERSION_STR "FPM v3.0.5 RPM"
+#define VERSION_STR "RevyBuild 2.5.3"
 #ifdef _DEBUG
 #define BUILD_TYPE_STR "Debug "
 #elif defined DEBUGFAST
@@ -29,7 +29,7 @@ const std::string scm_rev_str = "Ishiiruka-Dolphin"
 #endif
 
 const std::string scm_rev_git_str = SCM_REV_STR;
-const std::string scm_rev_cache_str = "202501182305";
+const std::string scm_rev_cache_str = "202506211759";
 const std::string scm_desc_str = VERSION_STR;
 const std::string scm_branch_str = SCM_BRANCH_STR;
 const std::string scm_distributor_str = SCM_DISTRIBUTOR_STR;
